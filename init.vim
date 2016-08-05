@@ -3,202 +3,185 @@
 " Special steps needed by following plugins, refer to the docs.
 " youcompleteme, powerline-fonts
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+if &compatible
+    set nocompatible              " be iMproved, required
+endif
+" filetype off                  " required
+set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
 
 " Python provider configuration
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.nvim/bundle/Vundle.vim
-call vundle#begin()
-" call pathogen#infect()
-" call pathogen#helptags()
-" " alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
-"
-" " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-"
-" " The following are examples of different formats supported.
-" " Keep Plugin commands between vundle#begin/end.
-" " plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" " plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" " Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" " git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" " The sparkup vim script is in a subdirectory of this repo called vim.
-" " Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" " Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
-"
+" Plugin path
+let s:plugin_path = '~/.config/nvim/dein/repos/github.com'
 
+" Set plugins root path
+call dein#begin(expand('~/.config/nvim/dein'))
+    call dein#add('Shougo/dein.vim')
+    call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 " Environment {
 
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'spf13/vim-colors'
-    Plugin 'flazz/vim-colorschemes'
+    call dein#add('altercation/vim-colors-solarized')
 
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'powerline/fonts'
+    call dein#add('spf13/vim-colors')
+    call dein#add('flazz/vim-colorschemes')
 
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'jistr/vim-nerdtree-tabs'
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('powerline/fonts')
 
-    " Plugin 'kien/ctrlp.vim'
+    call dein#add('scrooloose/nerdtree')
+    call dein#add('jistr/vim-nerdtree-tabs')
 
-    Plugin 'amix/open_file_under_cursor.vim'
+    " call dein#add('kien/ctrlp.vim')
 
-    " Plugin 'vim-scripts/mru.vim'
+    call dein#add('amix/open_file_under_cursor.vim')
 
-    Plugin 'myusuf3/numbers.vim'
+    " call dein#add('vim-scripts/mru.vim')
 
-    " Plugin 'vim-scripts/sessionman.vim'
-    " Plugin 'xolox/vim-session'
+    call dein#add('myusuf3/numbers.vim')
 
-    Plugin 'vim-scripts/matchit.zip'
+    " call dein#add('vim-scripts/sessionman.vim')
+    " call dein#add('xolox/vim-session')
+
+    call dein#add('vim-scripts/matchit.zip')
     
-    Plugin 'mbbill/undotree'
+    call dein#add('mbbill/undotree')
     
-    Plugin 'vim-scripts/restore_view.vim'
+    call dein#add('vim-scripts/restore_view.vim')
 
-    Plugin 'mhinz/vim-signify'
+    call dein#add('mhinz/vim-signify')
 
-    Plugin 'tpope/vim-abolish.git'
+    call dein#add('tpope/vim-abolish.git')
 
-    Plugin 'osyo-manga/vim-over'
+    call dein#add('osyo-manga/vim-over')
 
-    " Plugin 'kana/vim-textobj-user'
-    " Plugin 'kana/vim-textobj-indent'
+    " call dein#add('kana/vim-textobj-user')
+    " call dein#add('kana/vim-textobj-indent')
 
-    Plugin 'gcmt/wildfire.vim'
+    call dein#add('gcmt/wildfire.vim')
 
-    Plugin 'reedes/vim-litecorrect'
+    call dein#add('reedes/vim-litecorrect')
 
-    Plugin 'Shougo/unite.vim'
-    Plugin 'Shougo/vimproc.vim'
-    Plugin 'Shougo/neomru.vim'
-    Plugin 'Shougo/unite-session'
+    call dein#add('Shougo/unite.vim')
+    call dein#add('Shougo/vimproc.vim')
+    call dein#add('Shougo/neomru.vim')
+    call dein#add('Shougo/unite-session')
     
-    Plugin 'ervandew/supertab'
+    call dein#add('ervandew/supertab')
 
-    " Plugin 'terryma/vim-smooth-scroll'
+    " call dein#add('terryma/vim-smooth-scroll')
 " }
 
 " Writing {
-    Plugin 'easymotion/vim-easymotion'
+    call dein#add('easymotion/vim-easymotion')
     
-    Plugin 'godlygeek/tabular'
+    call dein#add('godlygeek/tabular')
 
-    " Plugin 'reedes/vim-textobj-sentence'
-    " Plugin 'reedes/vim-textobj-quote'
-    " Plugin 'reedes/vim-wordy'
+    " call dein#add('reedes/vim-textobj-sentence')
+    " call dein#add('reedes/vim-textobj-quote')
+    " call dein#add('reedes/vim-wordy')
 " }
 
 " Programing {
     " General {
-        " Plugin 'MarcWeber/vim-addon-mw-utils'
-        " Plugin 'tomtom/tlib_vim'
-        Plugin 'Valloric/YouCompleteMe'
-        Plugin 'Valloric/ListToggle'
-        Plugin 'scrooloose/syntastic'
-        Plugin 'terryma/vim-multiple-cursors'
-        Plugin 'vim-scripts/taglist.vim'
-        Plugin 'nathanaelkane/vim-indent-guides'
+        " call dein#add('MarcWeber/vim-addon-mw-utils')
+        " call dein#add('tomtom/tlib_vim')
+        call dein#add('Valloric/YouCompleteMe')
 
-        Plugin 'scrooloose/nerdcommenter'
-        " Plugin 'tpope/vim-commentary'
+        call dein#add('Valloric/ListToggle')
+        call dein#add('scrooloose/syntastic')
+        call dein#add('terryma/vim-multiple-cursors')
+        call dein#add('vim-scripts/taglist.vim')
+        call dein#add('nathanaelkane/vim-indent-guides')
 
-        Plugin 'tpope/vim-sleuth'
-        " Plugin 'ciaranm/detectindent'
-        " Plugin 'jiangmiao/auto-pairs'
-        Plugin 'Raimondi/delimitMate'
+        call dein#add('scrooloose/nerdcommenter')
+        " call dein#add('tpope/vim-commentary')
 
-        Plugin 'tpope/vim-fugitive'
-        Plugin 'airblade/vim-gitgutter'
-        Plugin 'rhysd/conflict-marker.vim'
+        call dein#add('tpope/vim-sleuth')
+        " call dein#add('ciaranm/detectindent')
+        " call dein#add('jiangmiao/auto-pairs')
+        call dein#add('Raimondi/delimitMate')
 
-        Plugin 'SirVer/ultisnips'
-        Plugin 'honza/vim-snippets'
+        call dein#add('tpope/vim-fugitive')
+        call dein#add('airblade/vim-gitgutter')
+        call dein#add('rhysd/conflict-marker.vim')
 
-        Plugin 'mileszs/ack.vim'
+        call dein#add('SirVer/ultisnips')
+        call dein#add('honza/vim-snippets')
 
-        Plugin 'tpope/vim-surround'
-        Plugin 'tpope/vim-repeat'
+        call dein#add('mileszs/ack.vim')
 
-        " Plugin 'tacahiroy/ctrlp-funky'
+        call dein#add('tpope/vim-surround')
+        call dein#add('tpope/vim-repeat')
 
-        " Plugin 'mattn/webapi-vim'
-        " Plugin 'mattn/gist-vim'
+        " call dein#add('tacahiroy/ctrlp-funky')
 
-        Plugin 'luochen1990/rainbow'
+        " call dein#add('mattn/webapi-vim')
+        " call dein#add('mattn/gist-vim')
 
-        Plugin 'majutsushi/tagbar'
+        call dein#add('luochen1990/rainbow')
 
-        " Plugin 'spf13/vim-preview'
+        call dein#add('majutsushi/tagbar')
+
+        " call dein#add('spf13/vim-preview')
 
     " }
 
     " Python {
-        Plugin 'klen/python-mode'
-        Plugin 'yssource/python.vim'
-        Plugin 'python_match.vim'
-        Plugin 'pythoncomplete'
-        Plugin 'jmcantrell/vim-virtualenv'
+        call dein#add('klen/python-mode')
+        call dein#add('yssource/python.vim')
+        call dein#add('python_match.vim')
+        call dein#add('pythoncomplete')
+        call dein#add('jmcantrell/vim-virtualenv')
     " }
 
     " Javascript {
-        Plugin 'pangloss/vim-javascript'
-        Plugin 'elzr/vim-json'
-        Plugin 'kchmck/vim-coffee-script'
-        Plugin 'briancollins/vim-jst'
+        call dein#add('pangloss/vim-javascript')
+        call dein#add('elzr/vim-json')
+        call dein#add('kchmck/vim-coffee-script')
+        call dein#add('briancollins/vim-jst')
     " }
 
     " CSS/Less/Scss {
-        " Plugin 'hail2u/vim-css3-syntax'
-        " Plugin 'JulesWang/css.vim' " only necessary if your Vim version < 7.4
-        " Plugin 'cakebaker/scss-syntax.vim'
-        " Plugin 'tpope/vim-haml'
-        " Plugin 'groenewege/vim-less'
+        " call dein#add('hail2u/vim-css3-syntax')
+        " call dein#add('JulesWang/css.vim') " only necessary if your Vim version < 7.4
+        " call dein#add('cakebaker/scss-syntax.vim')
+        " call dein#add('tpope/vim-haml')
+        " call dein#add('groenewege/vim-less')
 
-        " Plugin 'gorodinskiy/vim-coloresque'
+        " call dein#add('gorodinskiy/vim-coloresque')
     " }
 
     " HTML {
-        Plugin 'mattn/emmet-vim'
-        " Plugin 'amirh/HTML-AutoCloseTag'
+        call dein#add('mattn/emmet-vim')
+        " call dein#add('amirh/HTML-AutoCloseTag')
     " }
     
     " Vue {
-        " Plugin 'posva/vim-vue'
-        " Plugin 'sekel/vim-vue-syntastic'
+        " call dein#add('posva/vim-vue')
+        " call dein#add('sekel/vim-vue-syntastic')
     " }
 
     " Rust {
-        " Plugin 'rust-lang/rust.vim'
+        " call dein#add('rust-lang/rust.vim')
     " }
 
     " Ruby {
-        " Plugin 'tpope/vim-rails'
-        " Plugin 'tpope/vim-cucumber'
-        " Plugin 'quentindecock/vim-cucumber-align-pipes'
+        " call dein#add('tpope/vim-rails')
+        " call dein#add('tpope/vim-cucumber')
+        " call dein#add('quentindecock/vim-cucumber-align-pipes')
     " }
 
     " Markdown {
-        Plugin 'tpope/vim-markdown'
+        call dein#add('tpope/vim-markdown')
     " }
 " }
+"
+call dein#end()
 
-" " All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
-" " Put your non-Plugin stuff after this line
 
 " Set augroup
 augroup MyAutoCmd
@@ -248,12 +231,12 @@ augroup END
     set cursorline
     " set cursorcolumn
 
-    if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+    if dein#tap('vim-colors-solarized')
         let g:solarized_termcolors=256
         let g:solarized_termtrans=1
         let g:solarized_contrast="normal"
         let g:solarized_visibility="normal"
-        color solarized             " Load a colorscheme
+        colorscheme solarized             " Load a colorscheme
     endif
 
     set tabpagemax=15               " Only show 15 tabs
@@ -284,7 +267,7 @@ augroup END
         " Broken down into easily includeable segments
         set statusline=%<%f\                     " Filename
         set statusline+=%w%h%m%r                 " Options
-        if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
+        if dein#tap('vim-fugitive')
             set statusline+=%{fugitive#statusline()} " Git Hotness
         endif
         set statusline+=\ [%{&ff}/%Y]            " Filetype
@@ -653,7 +636,7 @@ augroup END
 
         " See `:echo g:airline_theme_map` for some more choices
         " Default in terminal vim is 'dark'
-        if isdirectory(expand("~/.vim/bundle/vim-airline-themes/"))
+        if dein#tap('vim-airline-themes')
             if !exists('g:airline_theme')
                 let g:airline_theme = 'solarized'
             endif
@@ -666,7 +649,7 @@ augroup END
     " }
 
     " NerdTree {
-        if isdirectory(expand("~/.vim/bundle/nerdtree"))
+        if dein#tap('nerdtree')
             map <C-e> <plug>NERDTreeTabsToggle<CR>
             map <leader>e :NERDTreeFind<CR>
             nmap <leader>nt :NERDTreeFind<CR>
@@ -693,59 +676,14 @@ augroup END
         " let g:NERDCustomDelimiters = { 'javascript' : { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'  } } 
     " }
 
-    " ctrlp {
-        if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
-            nnoremap <silent> <D-t> :CtrlP<CR>
-            nnoremap <silent> <D-r> :CtrlPMRU<CR>
-            map <leader>f :CtrlPMRU<CR>
-            
-            " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-            let g:ctrlp_working_path_mode = 'ra'
-            let g:ctrlp_custom_ignore = {
-                \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-                \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$|\.DS_Store$' }
-
-            if executable('ag')
-                let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
-            elseif executable('ack-grep')
-                let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
-            elseif executable('ack')
-                let s:ctrlp_fallback = 'ack %s --nocolor -f'
-            " On Windows use "dir" as fallback command.
-            elseif WINDOWS()
-                let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
-            else
-                let s:ctrlp_fallback = 'find %s -type f'
-            endif
-            if exists("g:ctrlp_user_command")
-                unlet g:ctrlp_user_command
-            endif
-            let g:ctrlp_user_command = {
-                \ 'types': {
-                    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-                    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                \ },
-                \ 'fallback': s:ctrlp_fallback
-            \ }
-
-            if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
-                " CtrlP extensions
-                let g:ctrlp_extensions = ['funky']
-
-                "funky
-                nnoremap <Leader>fu :CtrlPFunky<Cr>
-            endif
-        endif
-    "}
-
     " Rainbow {
-        if isdirectory(expand("~/.vim/bundle/rainbow/"))
+        if dein#tap('rainbow')
             let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
         endif
     "}
 
     " Fugitive {
-        if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
+        if dein#tap('vim-fugitive')
             nnoremap <silent> <leader>gs :Gstatus<CR>
             nnoremap <silent> <leader>gd :Gdiff<CR>
             nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -762,7 +700,7 @@ augroup END
     "}
 
     " YouCompleteMe {
-        if isdirectory(expand("~/.vim/bundle/youcompleteme/"))
+        if dein#tap('youcompleteme')
             nnoremap <leader>gdl :YcmCompleter GoToDeclaration<CR>
             nnoremap <leader>gdf :YcmCompleter GoToDefinition<CR>
             nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -775,7 +713,7 @@ augroup END
             " let g:ycm_key_list_select_completion = ['<tab>', '<c-j>', '<c-n>', '<Down>']
             " let g:ycm_key_list_previous_completion = ['<c-k>', '<c-p>', '<Up>']
             let g:ycm_confirm_extra_conf = 0
-            let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
+            let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
 
             let g:acp_enableAtStartup = 0
 
@@ -818,7 +756,7 @@ augroup END
     " }
 
     " ultisnips {
-        if isdirectory(expand("~/.vim/bundle/ultisnips/"))
+        if dein#tap('ultisnips')
             let g:UltiSnipsExpandTrigger="<TAB>"
             let g:UltiSnipsJumpForwardTrigger = '<C-j>'
             let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
@@ -827,7 +765,7 @@ augroup END
     " }
 
     " supertab {
-        if isdirectory(expand("~/.vim/bundle/supertab/"))
+        if dein#tap('supertab')
             let g:ycm_key_list_select_completion = ['<C-n>', '<C-j>', '<Down>'] 
             let g:ycm_key_list_previous_completion = ['<C-p>', '<C-k>', '<Up>']
             let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -835,7 +773,7 @@ augroup END
     " }
 
     " Tabularize {
-        if isdirectory(expand("~/.vim/bundle/tabular"))
+        if dein#tap('tabular')
             nmap <Leader>a& :Tabularize /&<CR>
             vmap <Leader>a& :Tabularize /&<CR>
             nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
@@ -858,12 +796,12 @@ augroup END
     " Session List {
         " set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
         set sessionoptions=buffers,curdir,folds,tabpages,winsize
-        if isdirectory(expand("~/.vim/bundle/sessionman.vim/"))
+        if dein#tap('sessionman.vim')
             nmap <leader>sl :SessionList<CR>
             nmap <leader>ss :SessionSave<CR>
             nmap <leader>sc :SessionClose<CR>
         endif
-        if isdirectory(expand("~/.vim/bundle/unite-session/"))
+        if dein#tap('unite-session')
             nmap <leader>sl :UniteSessionLoad 
             nmap <leader>ss :UniteSessionSave 
         endif
@@ -881,7 +819,7 @@ augroup END
             let g:pymode = 0
         endif
 
-        if isdirectory(expand("~/.vim/bundle/python-mode"))
+        if dein#tap('python-mode')
             let g:pymode_lint_checkers = ['pyflakes']
             let g:pymode_trim_whitespaces = 0
             let g:pymode_options = 0
@@ -895,7 +833,7 @@ augroup END
     " }
 
     " UndoTree {
-        if isdirectory(expand("~/.vim/bundle/undotree/"))
+        if dein#tap('undotree')
             nnoremap <Leader>u :UndotreeToggle<CR>
             " If undotree is opened, it is likely one wants to interact with it.
             let g:undotree_SetFocusWhenToggle=1
@@ -903,7 +841,7 @@ augroup END
     " }
 
     " indent_guides {
-        if isdirectory(expand("~/.vim/bundle/vim-indent-guides/"))
+        if dein#tap('vim-indent-guides')
             let g:indent_guides_start_level = 2
             let g:indent_guides_guide_size = 1
             let g:indent_guides_enable_on_vim_startup = 1
@@ -911,26 +849,28 @@ augroup END
     " }
 
     " Wildfire {
-        let g:wildfire_objects = {
-        \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
-        \ "html,xml" : ["at"],
-        \ }
+        if dein#tap('wildfire.vim')
+            " let g:wildfire_objects = {
+            " \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
+            " \ "html,xml" : ["at"],
+            " \ }
+        endif
     " }
 
     " vim-javascript {
-        if isdirectory(expand("~/.vim/bundle/vim-javascript/"))
+        if dein#tap('vim-javascript')
             let g:javascript_enable_domhtmlcss = 1
         endif
     " }
 
     " delimitMate {
-        if isdirectory(expand("~/.vim/bundle/delimitMate/"))
+        if dein#tap('delimitMate')
             let delimitMate_expand_cr = 1
         endif
     " }
 
     " syntastic {
-        if isdirectory(expand("~/.vim/bundle/syntastic/"))
+        if dein#tap('syntastic')
             noremap <leader>se :SyntasticCheck<CR>
             " Syntastic Hide
             noremap <leader>sh :lclose<CR>
@@ -958,7 +898,7 @@ augroup END
     " }
 
     " vim-smooth-scroll {
-        if isdirectory(expand("~/.vim/bundle/vim-smooth-scroll/"))
+        if dein#tap('vim-smooth-scroll')
             " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
             " noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
             " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
@@ -967,7 +907,7 @@ augroup END
     " }
 
     " unite {
-        if isdirectory(expand("~/.vim/bundle/unite.vim"))
+        if dein#tap('unite.vim')
             nnoremap <silent> <C-p> :<C-u>Unite
                   \ -buffer-name=files buffer file_mru bookmark file_rec/async<CR>
             nnoremap <silent> <leader>f :<C-u>Unite -buffer-name=buffers file_mru buffer<CR>
