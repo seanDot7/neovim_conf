@@ -719,7 +719,9 @@ augroup END
 
             " enable completion from tags
             let g:ycm_collect_identifiers_from_tags_files = 1
-
+            let g:ycm_complete_in_comments = 1
+            let g:ycm_complete_in_strings = 1
+            let g:ycm_collect_identifiers_from_comments_and_strings = 0
             " remap Ultisnips for compatibility for YCM
             " let g:UltiSnipsExpandTrigger = '<C-j>'
             " let g:UltiSnipsJumpForwardTrigger = '<C-j>'
@@ -757,7 +759,7 @@ augroup END
 
     " ultisnips {
         if dein#tap('ultisnips')
-            let g:UltiSnipsExpandTrigger="<cr>"
+            let g:UltiSnipsExpandTrigger="<C-space>"
             let g:UltiSnipsJumpForwardTrigger = '<C-j>'
             let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
             let g:UltiSnipsRemoveSelectModeMappings = 0
